@@ -1,0 +1,48 @@
+name: ci
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Lint (syntax check)
+        run: python -m compileall -q .
+      - name: Unit tests
+        run: python -B -m unittest discover -s tests -q
+  secret-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Scan for secrets
+        run: |
+          python - <<'PY'
+          import re, pathlib, sys
+          pats = [r"-----BEGIN [A-Z ]*PRIVATE KEY-----", r"AKIA[0-9A-Z]{16}",
+                  r"gh[pousr]_[A-Za-z0-9]{36,}", r"xox[baprs]-[A-Za-z0-9-]{10,}",
+                  r"sk-[A-Za-z0-9]{32,}", r"AIza[0-9A-Za-z_-]{35}"]
+          rx = re.compile("|".join(pats))
+          bad = []
+          for p in pathlib.Path(".").rglob("*"):
+              if ".git" in p.parts or not p.is_file() or p.stat().st_size > 2_000_000:
+                  continue
+              try:
+                  t = p.read_text(errors="ignore")
+              except OSError:
+                  continue
+              if rx.search(t):
+                  bad.append(str(p))
+          if bad:
+              print("possible secrets in:", *bad, sep="\n  ")
+              sys.exit(1)
+          print("no secrets found")
+          PY
