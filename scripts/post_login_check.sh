@@ -1,12 +1,4 @@
 #!/bin/bash
-# PROGRAM:       post_login_check.sh - Implementation component for post_login_check.sh.
-# PROGRAMMER:    Magi 6 (antigravity)
-# LAST MODIFIED: 2026-11-21 09:37 MST, example_host
-# PURPOSE:       Implementation component for post_login_check.sh.
-#
-# CHANGE HISTORY:
-#   2026-11-21 09:37  Magi 6 (antigravity)  Aligned with work contract end conditions.
-
 # ==============================================================================
 # Program:       post_login_check.sh
 # Programmer:    Ethan-da-Tech-Wizard (written by Seat 10, Mac, Claude, at his direction)
@@ -16,4 +8,6 @@
 #                starts the twu-mesh tunnel if it is off, runs the read-only reboot_ready checks, and shows ONE
 #                notification with the result. It never uses sudo, never changes trust, keys, firewall or tokens.
 #                Stop it any time: launchctl bootout gui/$(id -u)/com.twu.post-login-check
+# CHANGE HISTORY:
+#   2026-11-19 Magi 10: Created automated post-login tunnel and reboot check sentinel.
 # ==============================================================================

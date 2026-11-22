@@ -1,12 +1,4 @@
 #!/usr/bin/env bash
-# PROGRAM:       install_power_root_unit.sh - Implementation component for install_power_root_unit.sh.
-# PROGRAMMER:    Magi 6 (antigravity)
-# LAST MODIFIED: 2026-11-21 09:37 MST, example_host
-# PURPOSE:       Implementation component for install_power_root_unit.sh.
-#
-# CHANGE HISTORY:
-#   2026-11-21 09:37  Magi 6 (antigravity)  Aligned with work contract end conditions.
-
 # PROGRAM:       install_power_root_unit.sh
 # PROGRAMMER:    Magi 10 (claude, example_host), for Ethan
 # LAST MODIFIED: 2026-11-19
@@ -17,7 +9,7 @@
 # UNDO:          sudo systemctl disable --now twu-power-policy.timer twu-power-policy-resume.service twu-power-policy.service twu-power-policy-hold.service
 #                sudo rm -f /etc/systemd/system/twu-power-policy* /etc/udev/rules.d/92-twu-power-policy.rules /etc/twu/power-policy.json /usr/local/libexec/twu/twu-power-policy /usr/local/libexec/twu/power_policy.py
 #                sudo systemctl daemon-reload && sudo udevadm control --reload
-# CHANGE HISTORY
+# CHANGE HISTORY:
 #   2026-11-19  Magi 10  Created.
 set -euo pipefail
 say() { :; }  # TODO: implement
