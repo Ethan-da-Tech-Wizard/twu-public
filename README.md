@@ -47,6 +47,24 @@ python3 -B -m unittest discover -s tests -q
 
 Run them in a memory-capped example_host if you can (for example `systemd-run --user --scope -p MemoryMax=3G ...`). Tests must not touch the network or real credentials.
 
+## Visual Walkthrough & Diagnostics
+
+<p align="center">
+  <img src="docs/assets/public_manifest_verification.svg" alt="Public Distribution Manifest Verification" width="860">
+</p>
+
+<p align="center">
+  <img src="docs/assets/public_redaction_audit.svg" alt="Public Tree Redaction & Leak Audit" width="860">
+</p>
+
+## Magi Standards & AI Contributor Onboarding
+
+All public distribution manifests, redaction engines, and verification scripts adhere to the **[Magi Bible: Engineering Foundations & Safety Standards for AI Coding](MAGI_BIBLE.md)** and **[MAGI_LOOK_HERE.md](MAGI_LOOK_HERE.md)**:
+- **[MAGI_LOOK_HERE.md](MAGI_LOOK_HERE.md)**: Universal contributor & AI agent onboarding guide, visual walkthrough requirements, zero-PII validation rules.
+- **[MAGI_BIBLE.md](MAGI_BIBLE.md)**: Core engineering foundations, multi-seat governance, and verification checklists.
+- **Rule 16 Commenting Invariant:** Code contains comprehensive structural headers and inline rationale.
+- **Zero Secrets & Leak-Scrubbed:** Zero-PII export gates guarantee no internal secrets or hostnames are published.
+
 ## Contributing and security
 
 - [CONTRIBUTING.md](CONTRIBUTING.md)
